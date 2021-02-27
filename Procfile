@@ -1,1 +1,1 @@
-web: gunicorn yash-user-exp.wsgi --log-file -
+web: gunicorn yash-user-exp.wsgi:application --log-file - --log-level debug
