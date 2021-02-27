@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT yash-user-exp.wsgi
+web: gunicorn yash-user-exp.wsgi --log-file -
