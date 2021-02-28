@@ -64,3 +64,10 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+class Profile(serializers.ModelSerializer):
+    profile = RegisterSerializer(required=true)
+    class Meta:
+        model=UserProfile
+        fields={school_name,Company_name,Current_Location}
+    

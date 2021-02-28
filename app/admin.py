@@ -10,7 +10,7 @@ class ExportCsvMixin:
     """
     Export records to CSV logic
     """
-
+    
     def export_as_csv(self, request, queryset):
         meta = queryset.model._meta
         field_names = [field.name for field in meta.fields]
