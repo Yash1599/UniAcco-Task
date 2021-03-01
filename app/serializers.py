@@ -69,6 +69,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 class Profile(serializers.ModelSerializer):
     profile = RegisterSerializer(required=True)
     class Meta:
-        models=Profile
+        model=Profile
         fields=('school_name','Company_name','Current_Location')
     
