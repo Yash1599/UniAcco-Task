@@ -24,9 +24,8 @@ class UserLoginHistory(models.Model):
         verbose_name_plural = 'user_login_histories'
 
 class Profile(models.Model):
-    user_id= models.ForeignKey(user_id , on_delete=models.CASCADE)
+  #  id= models.ForeignKey('auth.user' , on_delete=models.CASCADE)
     company_name= models.CharField(max_length=100,blank=True)
     school_name = models.CharField(max_length=100,blank=True)
     Current_Location=models.CharField(max_length=100,blank=True)
 
-# select *  from user where id=10

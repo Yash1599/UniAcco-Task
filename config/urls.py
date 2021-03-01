@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('apis/login/', view=ObtainJWTView.as_view(), name='login'),
     path('apis/register/', view=RegisterUser.as_view(), name='register'),
-    path('/profile',  view =UserProfilelist.as_view(),name='create_profile'),
-    path('/profile/view/' , view=CurrentProfileView.as_view()  , name='view_profile')
+    # path('/profile',  view =UserProfilelist.as_view(),name='create_profile'),
+    # path('/profile/view/' , view=CurrentProfileView.as_view()  , name='view_profile')
 ]

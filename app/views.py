@@ -5,6 +5,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from rest_framework import status
 from django.http import JsonResponse
+from app.serializers import Profile
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -26,17 +27,18 @@ class RegisterUser(APIView):
             return JsonResponse({'username':serializer.data.get('username')}, status=status.HTTP_201_CREATED )
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # def post(self, request, format='json'):
-    #     serializer = RegisterSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         user = serializer.save()
-    #         if user:
-    #             json = serializer.data
-    #             userDetail = json.pop("password")
-    #             return Response(json, status=status.HTTP_201_CREATED)
+    def post(self, request, format='json'):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                json = serializer.data
+                userDetail = json.pop("password")
+                return Response(json, status=status.HTTP_201_CREATED)
 
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class UserProfilelist(generics.ListCreateAPIView):
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserProfilelist(APIView):
     permission_classes = (IsAuthenticated,)
     authentication_class = JSONWebTokenAuthentication   
     serializer_class = Profile
@@ -50,10 +52,7 @@ class UserProfilelist(generics.ListCreateAPIView):
 class CurrentProfileView(APIView):
     permission_classes = (IsAuthenticated,)
     authentication_class = JSONWebTokenAuthentication
-    # def get(self, request):
-    #     serializer = UserSerializer(request.user)
-    #     return Response(serializer.data)
+    
     def get(self, request, format=None):
         serializer = UserProfilelist(request.user)
         return Response(serializer.data)
-        return Response((projects, many=True).data)
